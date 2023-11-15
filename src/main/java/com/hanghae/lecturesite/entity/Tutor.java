@@ -37,3 +37,4 @@ public class Tutor {
     private List<Lecture> lectureList = new ArrayList<>();
 
 }
+
