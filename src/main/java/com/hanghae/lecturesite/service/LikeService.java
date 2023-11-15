@@ -4,6 +4,7 @@ import com.hanghae.lecturesite.entity.Like;
 import com.hanghae.lecturesite.repository.LectureRepository;
 import com.hanghae.lecturesite.repository.LikeRepository;
 import com.hanghae.lecturesite.repository.MemberRepository;
+import io.jsonwebtoken.Claims;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +26,11 @@ public class LikeService {
     @Transactional
     public String likeLecture(String jwt, Long lectureId) {
 
-        // memberId 는 jwt로 다시 받아와야 함
-        Long memberId = 1L;
+        // jwtUtil 구현 완료 되면 확인 필요
+        // Claims claims = jwtUtil.getMemberInfoFromToken(jwt);
+        // Long memberId = Long.parseLong(claims.getSubject());
+
+        Long memberId = 1L; // 임시 값
 
         // 이미 좋아요를 눌렀는지 확인
         Optional<Like> existingLike = Optional.ofNullable(
