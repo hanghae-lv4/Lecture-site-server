@@ -19,8 +19,8 @@ public class LikeController {
     public LikeController(LikeService likeService) { this.likeService = likeService; }
 
 
-    @DeleteMapping("/comments/{id}")
-    public ResponseEntity<String> deleteLikes(@PathVariable Long id, @CookieValue(value = "Authorization", required = false) String jwt
+    @DeleteMapping("/lectures/{id}/like")
+    public ResponseEntity<String> likeLecture(@PathVariable Long id, @CookieValue(value = "Authorization", required = false) String jwt
     ) {
         String successMessage = likeService.likeLecture(jwt, id);
         return ResponseEntity.status(HttpStatus.OK)
