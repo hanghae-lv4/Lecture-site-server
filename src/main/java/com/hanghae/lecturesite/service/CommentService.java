@@ -16,7 +16,8 @@ public class CommentService {
 
 
     // 선택한 강의의 선택한 댓글 삭제
-    public String deleteComments(Long id) {
+    public String deleteComments(Long id, String jwt) {
+        // jwt 로직 작성 필요
         Comment comment = commentRepository.findById(id).orElseThrow(() ->
             new IllegalArgumentException("존재하지 않는 댓글입니다.")
             );
