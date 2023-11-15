@@ -22,7 +22,7 @@ public class Tutor {
     private String name;
 
     @Column(nullable = false)
-    private Long career;
+    private Integer career;
 
     @Column(nullable = false)
     private String company;

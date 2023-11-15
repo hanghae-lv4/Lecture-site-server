@@ -15,7 +15,7 @@ public class LectureResponseDto {
     private String lectureIntro;
     private LocalDateTime regDate;
     private String name;
-    private Long career;
+    private Integer career;
     private String company;
     private String tutorIntro;
 
