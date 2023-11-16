@@ -2,6 +2,7 @@ package com.hanghae.lecturesite.dto;
 
 import com.hanghae.lecturesite.entity.Lecture;
 import com.hanghae.lecturesite.entity.LectureCategoryEnum;
+
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;

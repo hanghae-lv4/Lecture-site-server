@@ -1,5 +1,22 @@
 package com.hanghae.lecturesite.controller;
 
+
+
+import com.hanghae.lecturesite.entity.LectureCategoryEnum;
+
+
+
+
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+import java.util.List;
+
+@RestController
+public class LectureController {
+    private final LectureService lectureService;
+
+
 import com.hanghae.lecturesite.dto.RegistLectureRequestDto;
 import com.hanghae.lecturesite.dto.LectureResponseDto;
 import com.hanghae.lecturesite.service.LectureService;
@@ -19,8 +36,18 @@ public class LectureController {
 
     // DI
     private final LectureService lectureService;
+
     public LectureController(LectureService lectureService) {
         this.lectureService = lectureService;
+    }
+
+
+    @GetMapping("/lecture")
+    public ResponseEntity<List<LectureResponseDto>> getLectureByCategory(@RequestParam("category") String category,
+                                                                         @RequestParam("sort") String sort,
+                                                                         @RequestParam("orderBy") String orderBy){
+        return new ResponseEntity<>(lectureService.getLectureByCategory(category, sort, orderBy), HttpStatus.OK);
+
     }
 
 
