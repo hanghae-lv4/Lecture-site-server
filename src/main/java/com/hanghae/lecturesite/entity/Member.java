@@ -2,6 +2,7 @@ package com.hanghae.lecturesite.entity;
 
 
 
+import com.hanghae.lecturesite.dto.SignupRequestDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
@@ -39,4 +40,11 @@ public class Member {
     @Enumerated(value = EnumType.STRING)
     private MemberRoleEnum role;
 
+    public Member(SignupRequestDto requestDto) {
+        this.email = requestDto.getEmail();
+        this.gender = requestDto.getGender();
+        this.phone = requestDto.getPhone();
+        this.address = requestDto.getAddress();
+        this.role = MemberRoleEnum.valueOf(requestDto.getRole());
+    }
 }
