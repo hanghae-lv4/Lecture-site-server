@@ -27,9 +27,9 @@ public class CommentController {
 
     // 선택한 강의의 선택한 댓글 삭제
     @DeleteMapping("/comments/{id}")
-    public ResponseEntity<String> deleteComments(@PathVariable Long id, @CookieValue(value = "Authorization", required = false) String jwt
+    public ResponseEntity<String> deleteComments(@PathVariable Long lectureId, Long commentId, @CookieValue(value = "Authorization", required = false) String jwt
     ) {
-        String successMessage = commentService.deleteComments(id, jwt);
+        String successMessage = commentService.deleteComments(lectureId, commentId, jwt);
         return ResponseEntity.status(HttpStatus.CREATED)
             .header(
                 HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE + ";charset=" + StandardCharsets.UTF_8)

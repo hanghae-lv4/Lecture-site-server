@@ -17,12 +17,13 @@ public class CommentService {
 
 
     // 선택한 강의의 선택한 댓글 삭제
-    public String deleteComments(Long id, String jwt) {
+    public String deleteComments(Long lectureId, Long commentId, String jwt) {
         // jwt 로직 임시 작성(확인 필요)
         // Claims claims = jwtUtil.getAdminInfoFromToken(jwt);
         // Long memberId = Long.parseLong(claims.getSubject());
 
-        Comment comment = commentRepository.findById(id).orElseThrow(() ->
+
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
             new IllegalArgumentException("존재하지 않는 댓글입니다.")
         );
 
