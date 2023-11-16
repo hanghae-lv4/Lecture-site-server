@@ -1,10 +1,12 @@
 package com.hanghae.lecturesite.repository;
 
 import com.hanghae.lecturesite.entity.Member;
-import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
+import java.util.Optional;
 
-    Optional<Member> findByEmail(String memberEmail);
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    Optional<Member> findByEmail(String email);
+
 }
