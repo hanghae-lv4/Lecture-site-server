@@ -35,6 +35,7 @@ public class Lecture {
     private String intro;
 
     @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private LectureCategoryEnum category;
 
     @CreatedDate
