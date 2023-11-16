@@ -1,6 +1,7 @@
 package com.hanghae.lecturesite.entity;
 
 
+import com.hanghae.lecturesite.dto.TutorRequestDto;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Tutor {
     private String name;
 
     @Column(nullable = false)
-    private Long career;
+    private Integer career;
 
     @Column(nullable = false)
     private String company;
@@ -36,4 +37,11 @@ public class Tutor {
     @OneToMany(mappedBy="tutor", orphanRemoval = true)
     private List<Lecture> lectureList = new ArrayList<>();
 
+    public Tutor(TutorRequestDto requestDto) {
+        this.name = requestDto.getName();
+        this.career = requestDto.getCareer();
+        this.company = requestDto.getCompany();
+        this.phone = requestDto.getPhone();
+        this.intro = requestDto.getIntro();
+    }
 }
