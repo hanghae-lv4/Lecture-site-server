@@ -1,26 +1,10 @@
 package com.hanghae.lecturesite.controller;
 
-
-
-import com.hanghae.lecturesite.entity.LectureCategoryEnum;
-
-
-
-
-import org.springframework.web.bind.annotation.RequestParam;
-
-
-import java.util.List;
-
-@RestController
-public class LectureController {
-    private final LectureService lectureService;
-
-
-import com.hanghae.lecturesite.dto.RegistLectureRequestDto;
 import com.hanghae.lecturesite.dto.LectureResponseDto;
+import com.hanghae.lecturesite.dto.RegistLectureRequestDto;
 import com.hanghae.lecturesite.service.LectureService;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 public class LectureController {
