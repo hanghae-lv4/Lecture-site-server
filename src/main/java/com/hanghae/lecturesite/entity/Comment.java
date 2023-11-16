@@ -1,5 +1,6 @@
 package com.hanghae.lecturesite.entity;
 
+import com.hanghae.lecturesite.dto.CommentRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,4 +31,8 @@ public class Comment {
     private Lecture lecture;
 
     private String comment;
+
+    public Comment(CommentRequestDto commentRequestDto) {
+        this.comment = commentRequestDto.getComment();
+    }
 }
