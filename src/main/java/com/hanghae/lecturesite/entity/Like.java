@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "like")
+@Table(name = "likes")
 @NoArgsConstructor
 public class Like {
     @Id
@@ -22,10 +22,8 @@ public class Like {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="member_id")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name="lecture_id")
     private Lecture lecture;
 }

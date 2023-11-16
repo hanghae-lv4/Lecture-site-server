@@ -23,11 +23,9 @@ public class Comment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="member_id")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name="lecture_id")
     private Lecture lecture;
 
     private String comment;
