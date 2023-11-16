@@ -4,6 +4,7 @@ package com.hanghae.lecturesite.controller;
 import com.hanghae.lecturesite.dto.CommentRequestDto;
 import com.hanghae.lecturesite.service.CommentService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +38,8 @@ public class CommentController {
 
 
     @PostMapping("/{lecturesId}/comments")
-    public ResponseEntity<String> createComments(@PathVariable Long lecturesId, @RequestBody CommentRequestDto commentRequestDto) {
-        return new ResponseEntity<>(commentService.createComments(lecturesId, commentRequestDto), HttpStatus.OK);
+    public ResponseEntity<String> createComments(@PathVariable Long lecturesId, @RequestBody CommentRequestDto commentRequestDto, HttpServletRequest req) {
+        return new ResponseEntity<>(commentService.createComments(lecturesId, commentRequestDto, req), HttpStatus.OK);
 
     }
 
