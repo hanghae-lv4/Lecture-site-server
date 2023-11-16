@@ -2,6 +2,7 @@ package com.hanghae.lecturesite.controller;
 
 import com.hanghae.lecturesite.dto.LectureResponseDto;
 import com.hanghae.lecturesite.dto.RegistLectureRequestDto;
+import com.hanghae.lecturesite.entity.LectureCategoryEnum;
 import com.hanghae.lecturesite.service.LectureService;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -28,8 +29,8 @@ public class LectureController {
     }
 
 
-    @GetMapping("/lecture")
-    public ResponseEntity<List<LectureResponseDto>> getLectureByCategory(@RequestParam("category") String category,
+    @GetMapping("/lectures")
+    public ResponseEntity<List<LectureResponseDto>> getLectureByCategory(@RequestParam("category") LectureCategoryEnum category,
                                                                          @RequestParam("sort") String sort,
                                                                          @RequestParam("orderBy") String orderBy){
         return new ResponseEntity<>(lectureService.getLectureByCategory(category, sort, orderBy), HttpStatus.OK);
