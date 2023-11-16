@@ -43,13 +43,13 @@ public class Lecture {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime regDate;
 
-    @OneToMany(mappedBy = "lecture")
+    @OneToMany(mappedBy = "lecture", cascade = CascadeType.PERSIST)
     private List<Comment> commentList = new ArrayList<>();
 
     @ManyToOne
     private Tutor tutor;
 
-    private Integer likes;
+    private Integer likes = 0;
 
     public void addComment(Comment comment){
         this.commentList.add(comment);

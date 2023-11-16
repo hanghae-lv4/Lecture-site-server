@@ -34,7 +34,7 @@ public class Tutor {
     @Column(nullable = false)
     private String intro;
 
-    @OneToMany(mappedBy="tutor", orphanRemoval = true)
+    @OneToMany(mappedBy="tutor", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<Lecture> lectureList = new ArrayList<>();
 
     public Tutor(TutorRequestDto requestDto) {
@@ -43,6 +43,11 @@ public class Tutor {
         this.company = requestDto.getCompany();
         this.phone = requestDto.getPhone();
         this.intro = requestDto.getIntro();
+    }
+
+    public void addLecture(Lecture lecture) {
+        this.lectureList.add(lecture);
+        lecture.setTutor(this);
     }
 }
 

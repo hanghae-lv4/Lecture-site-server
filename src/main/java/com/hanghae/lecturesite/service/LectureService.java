@@ -31,7 +31,8 @@ public class LectureService {
         lecture.setPrice(requestDto.getPrice());
         lecture.setIntro(requestDto.getIntro());
         lecture.setCategory(requestDto.getCategory());
-        lecture.setTutor(tutor);
+        //lecture.setTutor(tutor);
+        tutor.addLecture(lecture);
 
         lectureRepository.save(lecture);
         return "강의가 등록 되었습니다.";
