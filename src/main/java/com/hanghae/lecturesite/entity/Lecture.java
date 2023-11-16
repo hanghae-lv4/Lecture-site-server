@@ -54,6 +54,13 @@ public class Lecture {
     public void addComment(Comment comment){
         this.commentList.add(comment);
         comment.setLecture(this);
+    }
 
+    public void doLikes() {
+        this.likes++;
+    }
+
+    public void undoLikes() {
+        this.likes--;
     }
 }

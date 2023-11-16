@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/lectures")
 public class CommentController {
 
     // DI
@@ -34,13 +35,9 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-
-
-
     @PostMapping("/{lecturesId}/comments")
     public ResponseEntity<String> createComments(@PathVariable Long lecturesId, @RequestBody CommentRequestDto commentRequestDto, HttpServletRequest req) {
         return new ResponseEntity<>(commentService.createComments(lecturesId, commentRequestDto, req), HttpStatus.OK);
-
     }
 
     @PutMapping("/{lecturesId}/comments/{commentsId}")
@@ -48,18 +45,17 @@ public class CommentController {
                                                  @PathVariable Long commentsId,
                                                  @RequestBody CommentRequestDto commentRequestDto,
                                                  HttpServletRequest request){
-        return new ResponseEntity<>(commentService.updateCommnets(lecturesId, commentsId, commentRequestDto, request),HttpStatus.OK);
+        return new ResponseEntity<>(commentService.updateComments(lecturesId, commentsId, commentRequestDto, request),HttpStatus.OK);
     }
 
     // 선택한 강의의 선택한 댓글 삭제
-    @DeleteMapping("/lectures/comments/{id}")
-    public ResponseEntity<String> deleteComments(@PathVariable Long lectureId, Long commentId, @CookieValue(value = "Authorization", required = false) String jwt
+    @DeleteMapping("/{lecturesId}/comments/{commentsId}")
+    public ResponseEntity<String> deleteComments(@PathVariable Long lecturesId, @PathVariable Long commentsId, @CookieValue(value = "Authorization", required = false) String jwt
     ) {
-        String successMessage = commentService.deleteComments(lectureId, commentId, jwt);
+        String successMessage = commentService.deleteComments(lecturesId, commentsId, jwt);
         return ResponseEntity.status(HttpStatus.CREATED)
             .header(
                 HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE + ";charset=" + StandardCharsets.UTF_8)
             .body(successMessage);
     }
-
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,7 +20,7 @@ public class LikeController {
     public LikeController(LikeService likeService) { this.likeService = likeService; }
 
 
-    @DeleteMapping("/lectures/{id}/like")
+    @PostMapping("/lectures/{id}/like")
     public ResponseEntity<String> likeLecture(@PathVariable Long id, @CookieValue(value = "Authorization", required = false) String jwt
     ) {
         String successMessage = likeService.likeLecture(jwt, id);
