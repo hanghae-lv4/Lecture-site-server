@@ -1,6 +1,7 @@
 package com.hanghae.lecturesite.filter;
 
 import com.hanghae.lecturesite.entity.Member;
+import com.hanghae.lecturesite.entity.MemberRoleEnum;
 import com.hanghae.lecturesite.jwt.JwtUtil;
 import com.hanghae.lecturesite.repository.MemberRepository;
 import io.jsonwebtoken.Claims;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Slf4j(topic = "AuthFilter")
 @Component
@@ -56,6 +58,17 @@ public class AuthFilter implements Filter {
                 Member member = memberRepository.findByEmail(info.getSubject()).orElseThrow(() ->
                         new NullPointerException("Not Found User")
                 );
+
+                // 강사등록 및 강의등록은 ROLE_ADMIN 계정만 가능하도록 설정
+                if (StringUtils.hasText(url) && (url.equals("/lectures") || url.equals("/tutors"))) {
+                    // JWT 토큰에서 사용자의 ROLE을 가져옴
+                    String auth = (String) info.get(JwtUtil.AUTHORIZATION_KEY);
+
+                    // 사용자의 권한을 ADMIN과 비교
+                    if (!Objects.equals(MemberRoleEnum.valueOf(auth).getAuthority(), MemberRoleEnum.ADMIN.getAuthority())) {
+                        throw new IllegalArgumentException("ADMIN만 접근 가능한 기능입니다.");
+                    }
+                }
 
                 request.setAttribute("member", member);
                 chain.doFilter(request, response); // 다음 Filter 로 이동
