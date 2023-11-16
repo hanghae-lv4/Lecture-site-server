@@ -10,6 +10,7 @@ import com.hanghae.lecturesite.repository.CommentRepository;
 import com.hanghae.lecturesite.repository.LectureRepository;
 import com.hanghae.lecturesite.repository.MemberRepository;
 import io.jsonwebtoken.Claims;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -61,22 +62,26 @@ public class CommentService {
         return "댓글 등록 성공";
     }
 
-//    @Transactional
-//    public String updateCommnets(Long lecturesId, Long commentsId, CommentRequestDto commentRequestDto, HttpServletRequest request) {
-//        Member member = getAdminInfoFromToken(request);
-//
-//        Optional<Lecture> lecture = lectureRepository.findById(lecturesId);
-//
-//        if (lecture.isEmpty()) {
-//            throw new NoSuchElementException("존재하지않는 강의입니다.");
-//        }
-//
-//
-//        if (comment.getMember().getId() == (member.getId())) {
-//            comment.update(commentRequestDto);
-//            return "댓글 수정 완료";
-//        }
-//    }
+    @Transactional
+    public String updateCommnets(Long lecturesId, Long commentsId, CommentRequestDto commentRequestDto, HttpServletRequest request) {
+        Member member = findMember(request);
+
+        Optional<Lecture> lecture = lectureRepository.findById(lecturesId);
+
+        if (lecture.isEmpty()) {
+            throw new NoSuchElementException("존재하지않는 강의입니다.");
+        }
+
+        Comment comment = commentRepository.findById(commentsId).orElseThrow(()->
+                new EntityNotFoundException("존재하지않는 댓글입니다.")
+                );
+
+
+        if (comment.getMember().getId() == (member.getId())) {
+            comment.update(commentRequestDto);
+        }
+        return "댓글 수정 완료";
+    }
 
 
  

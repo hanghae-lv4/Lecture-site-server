@@ -54,5 +54,6 @@ public class Lecture {
     public void addComment(Comment comment){
         this.commentList.add(comment);
         comment.setLecture(this);
+
     }
 }
