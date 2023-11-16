@@ -43,13 +43,13 @@ public class CommentController {
 
     }
 
-//    @PutMapping("/{lecturesId}/comments/{commentsId}")
-//    public ResponseEntity<String> updateComments(@PathVariable Long LecturesId,
-//                                                 @PathVariable Long commentsId,
-//                                                 @RequestBody CommentRequestDto commentRequestDto,
-//                                                 HttpServletRequest request){
-//        return new ResponseEntity<>(commentService.updateCommnets(LecturesId,commentsId, commentRequestDto, request),HttpStatus.OK);
-//    }
+    @PutMapping("/{lecturesId}/comments/{commentsId}")
+    public ResponseEntity<String> updateComments(@PathVariable Long lecturesId,
+                                                 @PathVariable Long commentsId,
+                                                 @RequestBody CommentRequestDto commentRequestDto,
+                                                 HttpServletRequest request){
+        return new ResponseEntity<>(commentService.updateCommnets(lecturesId, commentsId, commentRequestDto, request),HttpStatus.OK);
+    }
 
     // 선택한 강의의 선택한 댓글 삭제
     @DeleteMapping("/lectures/comments/{id}")
