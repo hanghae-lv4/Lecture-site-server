@@ -24,6 +24,5 @@ public class LectureController {
                                                                          @RequestParam("sort") String sort,
                                                                          @RequestParam("orderBy") String orderBy){
         return new ResponseEntity<>(lectureService.getLectureByCategory(category, sort, orderBy), HttpStatus.OK);
-
     }
 }

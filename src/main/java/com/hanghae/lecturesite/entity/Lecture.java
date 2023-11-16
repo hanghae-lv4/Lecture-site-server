@@ -1,5 +1,6 @@
 package com.hanghae.lecturesite.entity;
 
+import com.hanghae.lecturesite.dto.CommentRequestDto;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -42,11 +43,16 @@ public class Lecture {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime regDate;
 
-    @OneToMany(mappedBy = "lecture")
+    @OneToMany(mappedBy = "lecture",cascade = CascadeType.PERSIST)
     private List<Comment> commentList = new ArrayList<>();
 
     @ManyToOne
     private Tutor tutor;
 
     private Integer like;
+
+    public void addComment(Comment comment){
+        this.commentList.add(comment);
+        comment.setLecture(this);
+    }
 }
